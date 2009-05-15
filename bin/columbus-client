@@ -12,7 +12,5 @@ Usage: #{$0} #{all_options_string} COMMAND [ARGS]
 EOS
   
   run do |command|
-    interface = command[:interface] || "vmnet8"
-    Columbus::Server.announce(interface)
   end
 end
