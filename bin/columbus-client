@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+require "rubygems"
+require ::File.dirname(__FILE__) + "/../lib/columbus"
+require 'git-style-binary/command'
+
+GitStyleBinary.primary do
+  @theme = :short
+  
+  version "Columbus client"  
+  banner <<-EOS
+Usage: #{$0} #{all_options_string} COMMAND [ARGS]
+EOS
+  
+  run do |command|
+    interface = command[:interface] || "vmnet8"
+    Columbus::Server.announce(interface)
+  end
+end

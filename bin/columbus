@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+require "rubygems"
+require ::File.dirname(__FILE__) + "/../lib/columbus"
+require 'git-style-binary/command'
+
+GitStyleBinary.primary do
+  @theme = :short
+  
+  version "Columbus"  
+  banner <<-EOS
+Usage: #{$0} #{all_options_string} COMMAND [ARGS]
+
+The #{$0} subcommands commands are:
+  \#{GitStyleBinary.pretty_known_subcommands.join("  ")}
+
+See '#{$0} help COMMAND' for more information on a specific command.
+EOS
+  
+  run do |command|
+    puts "You need to type a subcommand. Use -h for more"
+  end
+end

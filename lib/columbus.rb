@@ -5,5 +5,3 @@ require "server"
 
 module Columbus  
 end
-
-# Columbus::Server.announce("vmnet8")

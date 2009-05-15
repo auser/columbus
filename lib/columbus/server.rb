@@ -7,13 +7,13 @@ module Columbus
   class Server
     class << self
             
-      def announce(interface="vmnet8", t="_presence", port=9419)        
+      def announce(interface="vmnet8", t="_presence", proto="tcp", port=9419)        
         @interface = interface
         while true do
-          DNSSD.register(name, "#{t}._tcp", 'local', port, text_record.encode) do |rr|
-            print "."
-            sleep(30)
+          DNSSD.register(name, "#{t}._#{proto}", 'local', port, text_record.encode) do |rr|
+            printf "."
           end
+          sleep(10)
         end
       end
       
