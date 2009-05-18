@@ -1,6 +1,6 @@
 = columbus
 
-Description goes here.
+Columbus is a dns-sd discovery tool. You can both broadcast presence with the server tool and look for broadcasts on your network as well!
 
 == Copyright
 

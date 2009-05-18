@@ -3,7 +3,7 @@ require "rubygems"
 require ::File.dirname(__FILE__) + "/../lib/columbus"
 require 'git-style-binary/command'
 
-GitStyleBinary.primary do
+GitStyleBinary.command do
   @theme = :short
   
   version "Columbus"  
@@ -11,10 +11,16 @@ GitStyleBinary.primary do
 Usage: #{$0} #{all_options_string} COMMAND [ARGS]
 EOS
 
-  opt :interface, "The interface to pull from"
+  opt :interface, "The interface to pull from", :default => "vmnet8"
+  opt :name, "Name to broadcast", :type => String
+  opt :description, "Description to broadcast", :type => String
   
   run do |command|
-    interface = command[:interface] || "vmnet8"
+    interface = command[:interface]
+    
+    Columbus::Server.name = command[:name] unless command[:name].nil?
+    Columbus::Server.description = command[:description] unless command[:description].nil?
+    
     Columbus::Server.announce(interface)
   end
 end
