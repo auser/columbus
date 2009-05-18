@@ -21,7 +21,7 @@ module Columbus
       
       def text_record
         @text_record = DNSSD::TextRecord.new
-        @text_record['description'] = map_ip_to_interface[@interface]
+        @text_record['description'] = @description || map_ip_to_interface[@interface]
         @text_record
       end
       
