@@ -36,7 +36,7 @@ module Columbus
           if ip && @current_interface
             ip = ip.captures.compact.to_s.gsub(/addr:/, '')
             out.merge!({@current_interface => ip})
-          end    
+          end
         end
         out
       end

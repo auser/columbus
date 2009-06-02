@@ -21,16 +21,17 @@ EOS
     
     # Columbus::Client.list
     if command[:select]
-      s = Columbus::Client.service_list.select do |s|
+      servers = Columbus::Client.service_list.select do |s|
         s if s.name =~ /#{command[:select]}/
       end
-      puts "#{s.name}\t#{s.host}\t#{s.port}\t#{s.description}" unless s.empty?
+      found_server = servers.last
+      puts found_server
     else
       Columbus::Client.service_list.each do |s|
         if command[:query]
           puts s.send(command[:query].to_sym)      
         else
-          puts "#{s.name}\t#{s.host}\t#{s.port}\t#{s.description}"
+          puts 
         end      
       end
     end

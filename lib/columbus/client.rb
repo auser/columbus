@@ -14,6 +14,9 @@ module Columbus
       @port = port
       @description = description
     end
+    def to_s
+      "#{name}\t#{host}\t#{port}\t#{description}"      
+    end
   end
   class Client
     class << self
