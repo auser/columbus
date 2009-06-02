@@ -3,7 +3,11 @@ require "rubygems"
 require "dnssd"
 
 $:.unshift(File.dirname(__FILE__) + "/../vendor/gems")
-require "git-style-binaries/lib/git-style-binary"
+begin
+  require "git-style-binaries/lib/git-style-binary"
+rescue Exception => e
+  require "git-style-binaries"
+end
 
 require "server"
 require "client"
