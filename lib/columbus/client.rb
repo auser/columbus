@@ -43,7 +43,6 @@ module Columbus
             end
           end
         end
-        puts "Gathering for up to #{timeout} seconds for #{discover_type}..."
         sleep timeout
         dns.stop
       end
