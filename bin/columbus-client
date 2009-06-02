@@ -12,19 +12,27 @@ Usage: #{$0} #{all_options_string} COMMAND [ARGS]
 EOS
   
   opt :discover_type, "Type of discovery message", :default => nil
-  opt :query, "Query to perform on the service"
+  opt :query, "Query to perform on the service", :type => String
+  opt :select, "Select the first that responds to this selection", :type => String
   
   run do |command|    
     
     Columbus::Client.discover_type = command[:discover_type] unless command[:discover_type].nil?
     
     # Columbus::Client.list
-    Columbus::Client.service_list.each do |s|
-      if command[:query]
-        puts s.send(command[:query].to_sym)
-      else
-        puts "#{s.name}\t#{s.host}\t#{s.port}\t#{s.description}"
-      end      
+    if command[:select]
+      s = Columbus::Client.service_list.select do |s|
+        s if s.name =~ /#{command[:select]}/
+      end
+      puts "#{s.name}\t#{s.host}\t#{s.port}\t#{s.description}" unless s.empty?
+    else
+      Columbus::Client.service_list.each do |s|
+        if command[:query]
+          puts s.send(command[:query].to_sym)      
+        else
+          puts "#{s.name}\t#{s.host}\t#{s.port}\t#{s.description}"
+        end      
+      end
     end
     
   end
