@@ -25,7 +25,7 @@ EOS
         s if s.name =~ /#{command[:select]}/
       end
       found_server = servers.last
-      puts found_server
+      puts (command[:query] ? found_server.send(command[:query].to_sym) : found_server)
     else
       Columbus::Client.service_list.each do |s|
         if command[:query]
