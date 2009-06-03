@@ -43,6 +43,7 @@ module Columbus
             end
           end
         end
+        
         sleep timeout
         dns.stop
       end
