@@ -7,6 +7,7 @@ class ColumbusTest < Test::Unit::TestCase
   %w(mac vmware).each do |n|
     should "be able to parse data on #{n}" do
       data = open(::File.dirname(__FILE__) + "/fixtures/ifconfig-#{n}").read
+      p Columbus::Server.map_ip_to_interface(data)
       assert_equal Columbus::Server.map_ip_to_interface(data)["vmnet1"], "172.16.66.1"
     end
   end

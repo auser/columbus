@@ -8,3 +8,5 @@ require 'columbus'
 
 class Test::Unit::TestCase
 end
+
+GitStyleBinary.run = true
